@@ -29,7 +29,7 @@
       "hash": "31340a3706dda78916910dc2b925756fd3ee0ece"
     },
     "com.decentraland.unity-renderer": {
-      "version": "git+https://github.com/decentraland/unity-renderer.git?path=unity-renderer/Assets#main",
+      "version": "git+https://github.com/decentraland/unity-renderer.git?path=unity-renderer/Assets#feat/avpro-spike-implementation",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -79,7 +79,7 @@
         "com.unity.modules.vr": "1.0.0",
         "com.unity.modules.xr": "1.0.0"
       },
-      "hash": "9c13d73c044b037aee0742cb88a26793120bc06f"
+      "hash": "c76d6517fed982437bf7f693f3d58510692e347d"
     },
     "com.decentraland.videoplayer": {
       "version": "git+https://github.com/decentraland/DCLVideoPlayerUnity.git?path=Assets#main",

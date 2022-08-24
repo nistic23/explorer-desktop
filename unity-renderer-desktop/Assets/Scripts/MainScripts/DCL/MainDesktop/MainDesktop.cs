@@ -26,8 +26,6 @@ namespace DCL
             CommandLineParserUtils.ParseArguments();
             isConnectionLost = false;
 
-            DCLVideoTexture.videoPluginWrapperBuilder = () => new VideoPluginWrapper_Native();
-
             InitializeSettings();
 
             base.Awake();
