@@ -596,8 +596,7 @@ namespace RenderHeads.Media.AVProVideo
 		public override float GetTexturePixelAspectRatio()
 		{
 			// Only DirectShow supports this currently as the other APIs create textures already in the final DAR size
-			// RJT NOTE: Expanded check to include MF as our HAP implementation also returns a PAR
-			if ((_videoApi == Windows.VideoApi.DirectShow) || (_videoApi == Windows.VideoApi.MediaFoundation))
+			if (_videoApi == Windows.VideoApi.DirectShow)
 			{
 				return Native.GetTexturePixelAspectRatio(_instance);
 			}

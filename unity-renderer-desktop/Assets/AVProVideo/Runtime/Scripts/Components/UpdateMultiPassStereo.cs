@@ -61,7 +61,7 @@ namespace RenderHeads.Media.AVProVideo
 
 		private void LogXRDeviceDetails()
 		{
-#if UNITY_2019_1_OR_NEWER && !UNITY_TVOS
+#if UNITY_2019_1_OR_NEWER
 			string logOutput = "[AVProVideo] XR Device details: UnityEngine.XR.XRSettings.loadedDeviceName = " + UnityEngine.XR.XRSettings.loadedDeviceName + " | supportedDevices = ";
 
 			string[] aSupportedDevices = UnityEngine.XR.XRSettings.supportedDevices;

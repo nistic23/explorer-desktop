@@ -10,13 +10,13 @@ namespace RenderHeads.Media.AVProVideo
 {
 	public static class Helper
 	{
-		public const string AVProVideoVersion = "2.6.0";
+		public const string AVProVideoVersion = "2.5.7";
 		public sealed class ExpectedPluginVersion
 		{
-			public const string Windows      = "2.6.0";
-			public const string WinRT        = "2.6.0";
-			public const string Android      = "2.6.0";
-			public const string Apple        = "2.6.0";
+			public const string Windows      = "2.5.7";
+			public const string WinRT        = "2.5.7";
+			public const string Android      = "2.5.7";
+			public const string Apple        = "2.5.4";
 		}
 
 		public const string UnityBaseTextureName = "_MainTex";

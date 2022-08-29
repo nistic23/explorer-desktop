@@ -10,11 +10,11 @@
 		</data>
 		<key>Headers/AVProVideoTypes.h</key>
 		<data>
-		gCZ67+k0fR7PV3Q1dxY83WZ/sfo=
+		OpI6qT0ctWQTxy9r8UCMS46krgA=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		iDG+UMyFtUHwgg8vsQBwJYzY+Ls=
+		d8Lt7TqlF2hfzqQyfq13ILL97fw=
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/arm.swiftmodule</key>
 		<data>
-		9O4XSBMMs7o5vyHnOYgpcyE95Ps=
+		072V196+CvaYnXtBuIyscWHxZCc=
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		0agoFqKGS+RrjlfzgdHjS8+J+xM=
+		go1zZnUUfTSLXfUfP7ZZEtD44s8=
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		0agoFqKGS+RrjlfzgdHjS8+J+xM=
+		go1zZnUUfTSLXfUfP7ZZEtD44s8=
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/armv7-apple-ios.swiftdoc</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/armv7-apple-ios.swiftmodule</key>
 		<data>
-		9O4XSBMMs7o5vyHnOYgpcyE95Ps=
+		072V196+CvaYnXtBuIyscWHxZCc=
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/armv7.swiftdoc</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/AVProVideo.swiftmodule/armv7.swiftmodule</key>
 		<data>
-		9O4XSBMMs7o5vyHnOYgpcyE95Ps=
+		072V196+CvaYnXtBuIyscWHxZCc=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -74,11 +74,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			gCZ67+k0fR7PV3Q1dxY83WZ/sfo=
+			OpI6qT0ctWQTxy9r8UCMS46krgA=
 			</data>
 			<key>hash2</key>
 			<data>
-			PYZ1xROCqe1Na2qwrTCmh7IJgTZXsp5bptXJkxlA8TE=
+			QTDTEWPAJCdGpZVG5LdhR2vW3M4k3Ng+Qnu012ewMWE=
 			</data>
 		</dict>
 		<key>Modules/AVProVideo.swiftmodule/arm.swiftdoc</key>
@@ -96,11 +96,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9O4XSBMMs7o5vyHnOYgpcyE95Ps=
+			072V196+CvaYnXtBuIyscWHxZCc=
 			</data>
 			<key>hash2</key>
 			<data>
-			VuQuAnuhrfDNkeVHUDL+kFDrmB/QYqh6k4pPh6nj274=
+			sHTLbhqEgavtK3Hn1tODZGNDnYTzy3UMTttELZGDHFU=
 			</data>
 		</dict>
 		<key>Modules/AVProVideo.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -118,11 +118,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0agoFqKGS+RrjlfzgdHjS8+J+xM=
+			go1zZnUUfTSLXfUfP7ZZEtD44s8=
 			</data>
 			<key>hash2</key>
 			<data>
-			ic9OzVM4RRgGrwP5XjvDlcxmRP8nnqx8yvE2F6zimts=
+			wxuJH9rQ3Cv1uZA5KVN80FXZiMuVj4yCEv7XpnbD/p0=
 			</data>
 		</dict>
 		<key>Modules/AVProVideo.swiftmodule/arm64.swiftdoc</key>
@@ -140,11 +140,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0agoFqKGS+RrjlfzgdHjS8+J+xM=
+			go1zZnUUfTSLXfUfP7ZZEtD44s8=
 			</data>
 			<key>hash2</key>
 			<data>
-			ic9OzVM4RRgGrwP5XjvDlcxmRP8nnqx8yvE2F6zimts=
+			wxuJH9rQ3Cv1uZA5KVN80FXZiMuVj4yCEv7XpnbD/p0=
 			</data>
 		</dict>
 		<key>Modules/AVProVideo.swiftmodule/armv7-apple-ios.swiftdoc</key>
@@ -162,11 +162,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9O4XSBMMs7o5vyHnOYgpcyE95Ps=
+			072V196+CvaYnXtBuIyscWHxZCc=
 			</data>
 			<key>hash2</key>
 			<data>
-			VuQuAnuhrfDNkeVHUDL+kFDrmB/QYqh6k4pPh6nj274=
+			sHTLbhqEgavtK3Hn1tODZGNDnYTzy3UMTttELZGDHFU=
 			</data>
 		</dict>
 		<key>Modules/AVProVideo.swiftmodule/armv7.swiftdoc</key>
@@ -184,11 +184,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9O4XSBMMs7o5vyHnOYgpcyE95Ps=
+			072V196+CvaYnXtBuIyscWHxZCc=
 			</data>
 			<key>hash2</key>
 			<data>
-			VuQuAnuhrfDNkeVHUDL+kFDrmB/QYqh6k4pPh6nj274=
+			sHTLbhqEgavtK3Hn1tODZGNDnYTzy3UMTttELZGDHFU=
 			</data>
 		</dict>
 	</dict>

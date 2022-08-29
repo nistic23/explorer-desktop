@@ -169,8 +169,7 @@ namespace RenderHeads.Media.AVProVideo
 			public enum AudioMode
 			{
 				SystemDirect,
-				Unity,
-				SystemDirectWithCapture,
+				Unity
 			};
 
 			[Flags]
