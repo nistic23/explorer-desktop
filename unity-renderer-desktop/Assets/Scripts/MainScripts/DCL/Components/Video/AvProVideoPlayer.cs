@@ -41,7 +41,6 @@ public class AvProVideoPlayer : IDisposable
                 currentState = VideoState.ERROR;
                 break;
             case MediaPlayerEvent.EventType.ResolutionChanged:
-                avProTexture = avProMediaPlayer.TextureProducer.GetTexture(0);
                 ResizeVideoTexture();
                 break;
         }
@@ -66,7 +65,6 @@ public class AvProVideoPlayer : IDisposable
     {
         //Required BGRA32 for compatibility with AVPro texture
         videoTexture = new Texture2D(1, 1, TextureFormat.BGRA32, false, false);
-        SetTextureToBlack();
     }
 
     public Texture2D GetTexture()
@@ -124,15 +122,14 @@ public class AvProVideoPlayer : IDisposable
     
     private void ResizeVideoTexture()
     {
+        avProTexture = avProMediaPlayer.TextureProducer.GetTexture(0);
+        
         if (videoTexture == null || avProTexture == null)
             return;
         
-        if ((avProTexture.width != videoTexture.width || avProTexture.height != videoTexture.height))
-        {
-            videoTexture.Resize(avProMediaPlayer.TextureProducer.GetTexture(0).width,
-                avProMediaPlayer.TextureProducer.GetTexture(0).height);
-            videoTexture.Apply();
-        }
+        videoTexture.Resize(avProMediaPlayer.TextureProducer.GetTexture(0).width,
+            avProMediaPlayer.TextureProducer.GetTexture(0).height);
+        videoTexture.Apply();
     }
 
     public string GetLastError()
@@ -140,14 +137,4 @@ public class AvProVideoPlayer : IDisposable
         return lastError;
     }
 
-    private void SetTextureToBlack()
-    {
-        var fillColorArray =  videoTexture.GetPixels();
-        for(var i = 0; i < fillColorArray.Length; ++i)
-        {
-            fillColorArray[i] = Color.black;
-        }
-        videoTexture.SetPixels( fillColorArray );
-        videoTexture.Apply();
-    }
 }
