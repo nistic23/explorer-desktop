@@ -6,6 +6,7 @@ using MainScripts.DCL.Controllers.HUD.Preloading;
 using MainScripts.DCL.Controllers.LoadingFlow;
 using MainScripts.DCL.Controllers.SettingsDesktop;
 using MainScripts.DCL.Utils;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,11 +21,21 @@ namespace DCL
         private LoadingFlowController loadingFlowController;
         private PreloadingController preloadingController;
         private bool isConnectionLost;
+        private BaseVariable<FeatureFlag> featureFlags => DataStore.i.featureFlags.flags;
 
         protected override void Awake()
         {
             CommandLineParserUtils.ParseArguments();
             isConnectionLost = false;
+            if (featureFlags.Get().IsFeatureEnabled("use_avpro_player"))
+            {
+                DCLVideoTexture.videoPluginWrapperBuilder = () => new VideoPluginWrapper_AVPro();
+            }
+            else
+            {
+                DCLVideoTexture.videoPluginWrapperBuilder = () => new VideoPluginWrapper_Native();
+            }
+            featureFlags.OnChange += FeatureFlagsReady;
 
             InitializeSettings();
 
@@ -34,6 +45,19 @@ namespace DCL
             DataStore.i.performance.maxDownloads.Set(50);
             Texture.allowThreadedTextureCreation = true;
             SetupScreenResolution();
+        }
+
+        private void FeatureFlagsReady(FeatureFlag current, FeatureFlag previous)
+        {
+            if (current.IsFeatureEnabled("use_avpro_player"))
+            {
+                DCLVideoTexture.videoPluginWrapperBuilder = () => new VideoPluginWrapper_AVPro();
+            }
+            else
+            {
+                DCLVideoTexture.videoPluginWrapperBuilder = () => new VideoPluginWrapper_Native();
+            }
+            DataStore.i.featureFlags.flags.OnChange -= FeatureFlagsReady;
         }
 
         protected override void InitializeCommunication()
