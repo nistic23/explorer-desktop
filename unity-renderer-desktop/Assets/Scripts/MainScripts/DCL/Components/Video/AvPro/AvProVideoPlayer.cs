@@ -1,17 +1,19 @@
 using System;
+using System.Collections;
+using System.IO;
 using DCL.Components.Video.Plugin;
 using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 
-public class AvProVideoPlayer : IDisposable
+public class AvProVideoPlayer : IVideoPlayer, IDisposable
 {
-
     private MediaPlayer avProMediaPlayer;
     private VideoState currentState;
     private Texture2D videoTexture;
     private Texture avProTexture;
     private string lastError;
     private string id;
+    private bool resizeDone;
 
     public AvProVideoPlayer(string id, string url)
     {
@@ -23,7 +25,7 @@ public class AvProVideoPlayer : IDisposable
         currentState = VideoState.LOADING;
         avProMediaPlayer.Events.AddListener(AvProStateUpdater);
     }
-    
+
     private void AvProStateUpdater(MediaPlayer arg0, MediaPlayerEvent.EventType newState, ErrorCode arg2)
     {
         switch (newState)
@@ -33,19 +35,20 @@ public class AvProVideoPlayer : IDisposable
                 currentState = VideoState.READY;
                 break;
             case MediaPlayerEvent.EventType.Started:
-                ResizeVideoTexture();
                 currentState = VideoState.PLAYING;
                 break;
             case MediaPlayerEvent.EventType.Error:
                 lastError = "AVProError " + arg2 + " for id " + id;
+                avProMediaPlayer.CloseMedia();
                 currentState = VideoState.ERROR;
                 break;
             case MediaPlayerEvent.EventType.ResolutionChanged:
-                ResizeVideoTexture();
+                resizeDone = false;
+                avProTexture = null;
+                avProMediaPlayer.StartCoroutine(ResizeVideoTexture());
                 break;
         }
     }
-
 
     public void Dispose()
     {
@@ -55,10 +58,12 @@ public class AvProVideoPlayer : IDisposable
 
     public void UpdateVideoTexture()
     {
-        if (avProTexture == null)
-            return;
-       
-        Graphics.CopyTexture(avProTexture, videoTexture);
+        if (resizeDone)
+        {
+            avProTexture = avProMediaPlayer.TextureProducer.GetTexture(0);
+            avProTexture.GetNativeTexturePtr();
+            Graphics.CopyTexture(avProTexture, videoTexture);
+        }
     }
 
     public void PrepareTexture()
@@ -74,9 +79,8 @@ public class AvProVideoPlayer : IDisposable
 
     public void Play()
     {
-       currentState = VideoState.PLAYING;
-       SetVolume(1);
-       avProMediaPlayer.Play();
+        currentState = VideoState.PLAYING;
+        avProMediaPlayer.Play();
     }
 
     public void SetSeekTime(float startTime)
@@ -119,22 +123,22 @@ public class AvProVideoPlayer : IDisposable
     {
         avProMediaPlayer.Control.SetLooping(doLoop);
     }
-    
-    private void ResizeVideoTexture()
+
+    private IEnumerator ResizeVideoTexture()
     {
-        avProTexture = avProMediaPlayer.TextureProducer.GetTexture(0);
-        
-        if (videoTexture == null || avProTexture == null)
-            return;
-        
-        videoTexture.Resize(avProMediaPlayer.TextureProducer.GetTexture(0).width,
-            avProMediaPlayer.TextureProducer.GetTexture(0).height);
+        while (videoTexture == null || avProTexture == null)
+        {
+            avProTexture = avProMediaPlayer.TextureProducer.GetTexture(0);
+            yield return null;
+        }
+        videoTexture.Resize(avProTexture.width, avProTexture.height);
         videoTexture.Apply();
+        resizeDone = true;
     }
 
     public string GetLastError()
     {
         return lastError;
     }
-
 }
+

@@ -27,6 +27,7 @@ namespace DCL
         {
             CommandLineParserUtils.ParseArguments();
             isConnectionLost = false;
+           
             if (featureFlags.Get().IsFeatureEnabled("use_avpro_player"))
             {
                 DCLVideoTexture.videoPluginWrapperBuilder = () => new VideoPluginWrapper_AVPro();

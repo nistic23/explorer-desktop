@@ -1,15 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using DCL.Components.Video.Plugin;
 using UnityEngine;
 
 public class VideoPluginWrapper_AVPro : IVideoPluginWrapper
 {
 
-    private Dictionary<string, AvProVideoPlayer> videoPlayers = new Dictionary<string, AvProVideoPlayer>();
+    private Dictionary<string, IVideoPlayer> videoPlayers = new Dictionary<string, IVideoPlayer>();
 
     public void Create(string id, string url, bool useHls)
     {
-        videoPlayers.Add(id, new AvProVideoPlayer(id, url));
+        if (Path.GetExtension(url).ToLower().Equals(".jpeg") || Path.GetExtension(url).ToLower().Equals(".jpg"))
+        {
+            videoPlayers.Add(id, new JpegPlayer(id, url));
+        }
+        else
+        {
+            videoPlayers.Add(id, new AvProVideoPlayer(id, url));
+        }
     }
 
     public void Remove(string id)
