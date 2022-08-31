@@ -12,7 +12,7 @@ using UnityEngine.TestTools;
 public class AvProVideoShould : IntegrationTestSuite
 {
     
-    
+
     private ParcelScene scene;
 
 
@@ -29,19 +29,26 @@ public class AvProVideoShould : IntegrationTestSuite
     [TestCase("JPEG","https://ironapeclub.com/wp-content/uploads/2022/01/ironape-club-poster.jpg", ExpectedResult = null)]
     public IEnumerator AvProVideoTestCases(string id, string url)
     {
-        VideoPluginWrapper_AVPro pluginWrapperAvPro = new VideoPluginWrapper_AVPro();
-        pluginWrapperAvPro.Create(id,url,true);
+        #if UNITY_STANDALONE_LINUX
+            Assert.IsTrue(true, "AVProVideo not supported in Linux for video " + url);
+        #else
+            VideoPluginWrapper_AVPro pluginWrapperAvPro = new VideoPluginWrapper_AVPro();
+            pluginWrapperAvPro.Create(id,url,true);
 
-        yield return new WaitUntil(() => pluginWrapperAvPro.GetState(id) == VideoState.READY);
-       
-        Texture2D movieTexture = pluginWrapperAvPro.PrepareTexture(id);
-        pluginWrapperAvPro.TextureUpdate(id);
-        pluginWrapperAvPro.Play(id,0);
-        pluginWrapperAvPro.SetVolume(id, 1);
+            yield return new WaitUntil(() => pluginWrapperAvPro.GetState(id) == VideoState.READY);
+           
+            Texture2D movieTexture = pluginWrapperAvPro.PrepareTexture(id);
+            pluginWrapperAvPro.TextureUpdate(id);
+            pluginWrapperAvPro.Play(id,0);
+            pluginWrapperAvPro.SetVolume(id, 1);
 
-       Assert.IsNotNull(movieTexture);
-       Assert.IsNull(pluginWrapperAvPro.GetError(id));
-       
-       pluginWrapperAvPro.Remove(id);
+            Assert.IsNotNull(movieTexture);
+            Assert.IsNull(pluginWrapperAvPro.GetError(id));
+           
+            pluginWrapperAvPro.Remove(id);
+        #endif
+
     }
+    
+    
 }
