@@ -12,11 +12,6 @@ using UnityEngine.TestTools;
 public class AvProVideoShould : IntegrationTestSuite
 {
     
-
-    private ParcelScene scene;
-
-
-
     [UnityTest]
     [TestCase("MP3","https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", ExpectedResult = null)]
     [TestCase("loop", "https://player.vimeo.com/external/691621058.m3u8?s=a2aa7b62cd0431537ed53cd699109e46d0de8575", ExpectedResult = null)]
@@ -29,9 +24,12 @@ public class AvProVideoShould : IntegrationTestSuite
     [TestCase("JPEG","https://ironapeclub.com/wp-content/uploads/2022/01/ironape-club-poster.jpg", ExpectedResult = null)]
     public IEnumerator AvProVideoTestCases(string id, string url)
     {
-        #if UNITY_STANDALONE_LINUX
+        if (Application.platform == RuntimePlatform.LinuxPlayer || Application.platform == RuntimePlatform.LinuxEditor)
+        {
             Assert.IsTrue(true, "AVProVideo not supported in Linux for video " + url);
-        #else
+        }
+        else
+        {
             VideoPluginWrapper_AVPro pluginWrapperAvPro = new VideoPluginWrapper_AVPro();
             pluginWrapperAvPro.Create(id,url,true);
 
@@ -46,9 +44,7 @@ public class AvProVideoShould : IntegrationTestSuite
             Assert.IsNull(pluginWrapperAvPro.GetError(id));
            
             pluginWrapperAvPro.Remove(id);
-        #endif
-
+        }
     }
-    
-    
+
 }
