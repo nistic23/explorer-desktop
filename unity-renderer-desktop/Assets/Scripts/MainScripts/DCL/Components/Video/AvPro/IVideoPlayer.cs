@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.IO;
 using DCL.Components.Video.Plugin;
-using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 
 public interface IVideoPlayer
