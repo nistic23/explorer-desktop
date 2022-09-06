@@ -14,6 +14,7 @@ public class AvProVideoPlayer : IVideoPlayer, IDisposable
     private string lastError;
     private string id;
     private bool resizeDone;
+    private bool customLoop;
 
     public AvProVideoPlayer(string id, string url)
     {
@@ -47,6 +48,13 @@ public class AvProVideoPlayer : IVideoPlayer, IDisposable
                 avProTexture = null;
                 avProMediaPlayer.StartCoroutine(ResizeVideoTexture());
                 break;
+            case MediaPlayerEvent.EventType.FinishedPlaying:
+                if (customLoop)
+                {
+                    avProMediaPlayer.Rewind(false);
+                    avProMediaPlayer.Play();
+                }
+                break;
         }
     }
 
@@ -58,10 +66,16 @@ public class AvProVideoPlayer : IVideoPlayer, IDisposable
 
     public void UpdateVideoTexture()
     {
+        if (avProTexture && (avProTexture.width != videoTexture.width ||
+                             avProTexture.height != videoTexture.height))
+        {
+            resizeDone = false;
+            avProMediaPlayer.StartCoroutine(ResizeVideoTexture());
+            return;
+        }
         if (resizeDone)
         {
             avProTexture = avProMediaPlayer.TextureProducer.GetTexture(0);
-            avProTexture.GetNativeTexturePtr();
             Graphics.CopyTexture(avProTexture, videoTexture);
         }
     }
@@ -116,12 +130,13 @@ public class AvProVideoPlayer : IVideoPlayer, IDisposable
 
     public void SetPlaybackRate(float playbackRate)
     {
-        avProMediaPlayer.Control.SetPlaybackRate(playbackRate);
+        avProMediaPlayer.PlaybackRate = playbackRate;
     }
 
     public void SetLoop(bool doLoop)
     {
-        avProMediaPlayer.Control.SetLooping(doLoop);
+        customLoop = doLoop;
+        //avProMediaPlayer.Loop = doLoop;
     }
 
     private IEnumerator ResizeVideoTexture()
